@@ -1,0 +1,47 @@
+<template>
+    <div class="timerContainer">
+        <template if:false={isStartTimer}>
+            <lightning-card variant="Narrow" title="Pomodoro Timer">
+                <template if:true={isShowCount}>
+                    <div class="count">
+                        <lightning-combobox title="Count" name='Count' label='Count' value={countSelected}
+                            placeholder='Select the count for the pomodoro timer' options={countOptions}
+                            onchange={handleCountChange}></lightning-combobox>
+                    </div>
+                </template>
+                <template if:true={isShowTime}>
+                    <div class="time">
+                        <lightning-combobox title="Time" name='Time' label='Time' value={timeSelected}
+                            placeholder='Select the time for the pomodoro timer' options={timeOptions}
+                            onchange={handleTimeChange}></lightning-combobox>
+                    </div>
+                </template>
+            </lightning-card>
+            <div class="timerButton">
+                <button class="slds-button slds-button-brand" onclick={handleStartTimer}>Start Timer</button>
+            </div>
+        </template>
+        <template if:true={isStartTimer}>
+            <div class="startTimerContainer" onclick={handleScreenClick}>
+                <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                    class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Cancel and close</span>
+                        </button>
+                        <div class="slds-modal__header">
+                            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Pomodoro Timer</h1>
+                        </div>
+                        <div class="slds-modal__content slds-var-p-around_large timer" id="modal-content-id-1">
+                            {minutesLeft}:{secondsLeft}
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+    </div>
+</template>
