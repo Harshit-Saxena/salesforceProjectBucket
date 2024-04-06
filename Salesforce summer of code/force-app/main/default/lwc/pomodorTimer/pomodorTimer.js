@@ -30,7 +30,7 @@ export default class PomodorTimer extends LightningElement {
 
     getTimeOptions() {
         //? Here we'll create a only two optins for time
-        this.timeOptions.push({ label: '25', value: 1 });
+        this.timeOptions.push({ label: '25', value: 25 });
         this.timeOptions.push({ label: '50', value: 50 });
     }
     handleTimeChange(event) {
@@ -94,7 +94,7 @@ export default class PomodorTimer extends LightningElement {
     formatedTimeForBreak() {
         debugger;
         this.secondsLeft = 0;
-        if (this.timeSelected === 2) {
+        if (this.timeSelected === 25) {
             this.breakTime = 5;
             this.isFinalMinute = true;
         } else {
